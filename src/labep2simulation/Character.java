@@ -9,13 +9,14 @@ package labep2simulation;
  *
  * @author Lokem
  */
-public class LabEP2Simulation {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public abstract class Character {
+    int birthDate;
+    
+    public Character(int birthDate){
+        this.birthDate = birthDate;
     }
     
+    public int getBirthDate(){
+        return this.birthDate;
+    }
 }
