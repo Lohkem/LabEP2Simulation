@@ -13,8 +13,8 @@ public class VampireHunter extends Human{
     
     int vampiresKilled = 0;
     
-    public VampireHunter(int birthDate) {
-        super(birthDate);
+    public VampireHunter(int birthDate, int speed) {
+        super(birthDate, speed);
     }
     
     public void killVampire(){

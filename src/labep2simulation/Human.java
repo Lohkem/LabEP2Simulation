@@ -14,15 +14,12 @@ public class Human extends Character{
     
     int velocity;
     
-    public Human(int birthDate) {
+    public Human(int birthDate, int speed) {
         super(birthDate);
+        velocity = speed;
     }
     
     public int getVelocity(){
         return this.velocity;
-    }
-
-    public void setVelocity(int velocity) {
-        this.velocity = velocity;
     }
 }
