@@ -173,7 +173,8 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnShowDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowDetailsActionPerformed
-        // TODO add your handling code here:
+        DetailsWindow dw = new DetailsWindow(world);
+        dw.setVisible(true);
     }//GEN-LAST:event_btnShowDetailsActionPerformed
 
     private void btnSkip10DaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkip10DaysActionPerformed

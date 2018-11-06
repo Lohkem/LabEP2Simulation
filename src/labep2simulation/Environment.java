@@ -33,6 +33,7 @@ public class Environment {
         day = 1;
         temperature = 20;
         players = new ArrayList<>();
+        calculateInitialTotalPlayers();
         addPlayers("human", humansLeft);
         addPlayers("hunter", vampireHuntersLeft);
         addPlayers("vampire", vampiresLeft);
@@ -42,10 +43,10 @@ public class Environment {
     private int calculateInitialTotalPlayers()
     {
         Random rand = new Random(); 
-        humansLeft = rand.nextInt(4001)+2000;   //Initial amount of humans between  4000-6000
-        vampireHuntersLeft = rand.nextInt(11)+5;//                  hunters         10-15
-        vampiresLeft = rand.nextInt(16)+5;      //                  vampires        15-20
-        zombiesLeft = rand.nextInt(21)+10;      //                  zombies         20-30       
+        humansLeft = rand.nextInt(2001)+4000;   //Initial amount of humans between  4000-6000
+        vampireHuntersLeft = rand.nextInt(6)+10;//                  hunters         10-15
+        vampiresLeft = rand.nextInt(6)+15;      //                  vampires        15-20
+        zombiesLeft = rand.nextInt(11)+20;      //                  zombies         20-30       
         
         return humansLeft + vampireHuntersLeft + vampiresLeft + zombiesLeft;
     }
