@@ -245,6 +245,9 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
             parameters is not really my favorite option tbh                     
         */
         world.addDay();
+        world.dayOfHumans();
+        world.dayOfVampires();
+        world.dayOfZombie();
         world.changeClimate();
         
     }

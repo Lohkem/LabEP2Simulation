@@ -12,8 +12,7 @@ package labep2simulation;
 public abstract class Character {
     int birthDate;
     String type;
-
-    
+  
     
     public Character(int birthDate){
         this.birthDate = birthDate;
