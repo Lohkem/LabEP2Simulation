@@ -5,6 +5,8 @@
  */
 package labep2simulation;
 
+import java.util.Random;
+
 
 /**
  *
@@ -16,10 +18,33 @@ public class Human extends Character{
     
     public Human(int birthDate, int speed) {
         super(birthDate);
+        Random rand = new Random();
         velocity = speed;
+        type = "Human";
     }
     
     public int getVelocity(){
         return this.velocity;
+    }
+    
+    public boolean reproduction(int temp)
+    {
+        Random rand = new Random();
+        double luckyNumber = rand.nextDouble();  //0.0-1.0
+        if (temp >= 22)
+        {
+            if (luckyNumber <= 1/15)    return true;
+            return false;
+        }
+        else if (temp <= 18)
+        {
+            if (luckyNumber <= 1/50)     return true;
+            return false;
+        }
+        else
+        {
+            if (luckyNumber <= 1/30)      return true;
+            return false;
+        }
     }
 }

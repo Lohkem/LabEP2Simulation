@@ -15,6 +15,7 @@ public class Vampire extends Character{
     
     public Vampire(int birthDate) {
         super(birthDate);
+        type = "Vampire";
     }
     
     public void transformHuman(){

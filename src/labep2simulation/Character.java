@@ -11,12 +11,19 @@ package labep2simulation;
  */
 public abstract class Character {
     int birthDate;
+    String type;
+
+    
     
     public Character(int birthDate){
         this.birthDate = birthDate;
+        type = "Character";
     }
     
     public int getBirthDate(){
         return this.birthDate;
+    }
+    public String getType() {
+        return type;
     }
 }

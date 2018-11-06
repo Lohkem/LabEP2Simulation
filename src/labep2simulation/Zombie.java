@@ -15,6 +15,7 @@ public class Zombie extends Character{
     
     public Zombie(int birthDate) {
         super(birthDate);
+        type = "Zombie";
     }
     
     public void transformHuman(){

@@ -29,21 +29,21 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblGame = new javax.swing.JLabel();
         btnStart = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnShowDetails = new javax.swing.JButton();
+        btnSkip10Days = new javax.swing.JButton();
+        btnSkipDay = new javax.swing.JButton();
+        btnGlobalWarming = new javax.swing.JButton();
+        btnGlobalCooling = new javax.swing.JButton();
+        btnInvasionZombie = new javax.swing.JButton();
         lblDay = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
-        jLabel1.setText("INVASIÓN");
+        lblGame.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        lblGame.setText("INVASIÓN");
 
         btnStart.setText("Creación");
         btnStart.addActionListener(new java.awt.event.ActionListener() {
@@ -54,27 +54,32 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
 
         btnExit.setText("Salir");
 
-        jButton3.setText("Mostrar Detalles");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnShowDetails.setText("Mostrar Detalles");
+        btnShowDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnShowDetailsActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Saltar 10 días");
-
-        jButton5.setText("Saltar un día");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnSkip10Days.setText("Saltar 10 días");
+        btnSkip10Days.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnSkip10DaysActionPerformed(evt);
             }
         });
 
-        jButton6.setText("Calentamiento Global ");
+        btnSkipDay.setText("Saltar un día");
+        btnSkipDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkipDayActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("Enfriamiento Global");
+        btnGlobalWarming.setText("Calentamiento Global ");
 
-        jButton8.setText("Invasión de Zombies");
+        btnGlobalCooling.setText("Enfriamiento Global");
+
+        btnInvasionZombie.setText("Invasión de Zombies");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -86,14 +91,14 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnStart)
                         .addGap(43, 43, 43)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSkipDay, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton6)
+                        .addComponent(btnGlobalWarming)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7)))
+                        .addComponent(btnGlobalCooling)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8)
+                    .addComponent(btnInvasionZombie)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,13 +107,13 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(98, 98, 98)
-                .addComponent(jButton3)
+                .addComponent(btnShowDetails)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(btnSkip10Days)
                 .addGap(103, 103, 103))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(155, 155, 155)
-                .addComponent(jLabel1)
+                .addComponent(lblGame)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -116,25 +121,25 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addComponent(lblGame)
                     .addComponent(lblDay))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnStart)
-                            .addComponent(btnExit))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnExit)
+                            .addComponent(btnStart))
                         .addGap(0, 81, Short.MAX_VALUE))
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSkipDay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btnShowDetails)
+                    .addComponent(btnSkip10Days))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
+                    .addComponent(btnGlobalWarming)
+                    .addComponent(btnGlobalCooling)
+                    .addComponent(btnInvasionZombie))
                 .addGap(32, 32, 32))
         );
 
@@ -154,20 +159,29 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnSkipDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkipDayActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        skipDay();
+        updateDateTxtField();
+    }//GEN-LAST:event_btnSkipDayActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         // TODO add your handling code here:
         world = new Environment();
         world.resetGame();
-        lblDay.setText("Día: " + world.getDay());
+        updateDateTxtField();
     }//GEN-LAST:event_btnStartActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnShowDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowDetailsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnShowDetailsActionPerformed
+
+    private void btnSkip10DaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkip10DaysActionPerformed
+        // TODO add your handling code here:
+        for (int i = 0; i < 10; i++)
+            skipDay();  
+        updateDateTxtField();
+    }//GEN-LAST:event_btnSkip10DaysActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,18 +223,33 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnGlobalCooling;
+    private javax.swing.JButton btnGlobalWarming;
+    private javax.swing.JButton btnInvasionZombie;
+    private javax.swing.JButton btnShowDetails;
+    private javax.swing.JButton btnSkip10Days;
+    private javax.swing.JButton btnSkipDay;
     private javax.swing.JButton btnStart;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblDay;
+    private javax.swing.JLabel lblGame;
     // End of variables declaration//GEN-END:variables
     
     
+    /* EXTRA METHODS USED FOR WHEN BUTTONS ARE CLICKED */
     
+    public void skipDay()
+    {   /*  Important!! The order you put the methods decides what happens, change climate first can have effect on reproduction.
+            Making zombies after reproduction can cause babies to become immidiately zombies. It depends a little bit on
+            what the client (=teacher) expect us to do.. Start making copies of the previous days and passing these as 
+            parameters is not really my favorite option tbh                     
+        */
+        world.addDay();
+        world.changeClimate();
+        
+    }
+    public void updateDateTxtField()
+    {
+        lblDay.setText("Día: " + world.getDay());
+    }
 }

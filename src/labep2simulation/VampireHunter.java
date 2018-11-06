@@ -15,6 +15,7 @@ public class VampireHunter extends Human{
     
     public VampireHunter(int birthDate, int speed) {
         super(birthDate, speed);
+        type = "VampireHunter";
     }
     
     public void killVampire(){
