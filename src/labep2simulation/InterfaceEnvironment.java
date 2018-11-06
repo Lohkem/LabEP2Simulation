@@ -7,7 +7,7 @@ package labep2simulation;
 
 /**
  *
- * @author Lidia
+ * @author Olivier
  */
 public class InterfaceEnvironment extends javax.swing.JFrame {
     public Environment world;
@@ -53,6 +53,11 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
         });
 
         btnExit.setText("Salir");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
 
         btnShowDetails.setText("Mostrar Detalles");
         btnShowDetails.addActionListener(new java.awt.event.ActionListener() {
@@ -76,10 +81,25 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
         });
 
         btnGlobalWarming.setText("Calentamiento Global ");
+        btnGlobalWarming.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGlobalWarmingActionPerformed(evt);
+            }
+        });
 
         btnGlobalCooling.setText("Enfriamiento Global");
+        btnGlobalCooling.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGlobalCoolingActionPerformed(evt);
+            }
+        });
 
         btnInvasionZombie.setText("Invasión de Zombies");
+        btnInvasionZombie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInvasionZombieActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -184,6 +204,27 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
         updateDateTxtField();
     }//GEN-LAST:event_btnSkip10DaysActionPerformed
 
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(1);
+    }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnGlobalWarmingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGlobalWarmingActionPerformed
+        // TODO add your handling code here:
+        world.changeTemperature(10);
+        
+    }//GEN-LAST:event_btnGlobalWarmingActionPerformed
+
+    private void btnGlobalCoolingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGlobalCoolingActionPerformed
+        // TODO add your handling code here:
+        world.changeTemperature(-10);
+    }//GEN-LAST:event_btnGlobalCoolingActionPerformed
+
+    private void btnInvasionZombieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvasionZombieActionPerformed
+        // TODO add your handling code here:
+        world.setZombieChanceToCatchHuman(0.3333);
+    }//GEN-LAST:event_btnInvasionZombieActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -250,6 +291,9 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
         world.dayOfVampires();
         world.dayOfZombie();
         world.changeClimate();
+        
+        //All characters with flag dying == true will die
+        world.charactersDying();
         
     }
     public void updateDateTxtField()

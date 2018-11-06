@@ -12,11 +12,18 @@ package labep2simulation;
 public abstract class Character {
     int birthDate;
     String type;
+    boolean dying;
+
+    public boolean isDying() {
+        return dying;
+    }
+    
   
     
     public Character(int birthDate){
         this.birthDate = birthDate;
         type = "Character";
+        dying = false;
     }
     
     public int getBirthDate(){
@@ -24,5 +31,9 @@ public abstract class Character {
     }
     public String getType() {
         return type;
+    }
+    public void willDie()
+    {
+        dying = true;
     }
 }

@@ -21,6 +21,7 @@ public class Environment {
     private int vampireHuntersLeft;
     private int vampiresLeft;
     private int zombiesLeft;
+    private double zombieChanceToCatchHuman;
     private ArrayList<Character> players;
     
     public Environment()
@@ -32,12 +33,13 @@ public class Environment {
     {
         day = 1;
         temperature = 20;
+        zombieChanceToCatchHuman = 0.1;
         players = new ArrayList<>();
         calculateInitialTotalPlayers();
-        addPlayers("human", humansLeft);
-        addPlayers("hunter", vampireHuntersLeft);
-        addPlayers("vampire", vampiresLeft);
-        addPlayers("zombie", zombiesLeft); 
+        addPlayers("Human", humansLeft);
+        addPlayers("VampireHunter", vampireHuntersLeft);
+        addPlayers("Vampire", vampiresLeft);
+        addPlayers("Zombie", zombiesLeft); 
             
     }
     private int calculateInitialTotalPlayers()
@@ -59,21 +61,21 @@ public class Environment {
         {   
             
             switch (type){
-                case "human":
+                case "Human":
                     speed = rand.nextInt(41)+60;
                     Human h = new Human(day, speed);
                     players.add(h);
                     break;
-                case "hunter":
+                case "VampireHunter":
                     speed = rand.nextInt(41)+60;
                     VampireHunter vp = new VampireHunter(day, speed);
                     players.add(vp);
                     break;
-                case "vampire":
+                case "Vampire":
                     Vampire v = new Vampire(day);
                     players.add(v);
                     break;
-                case "zombie":
+                case "Zombie":
                     Zombie z = new Zombie(day);
                     players.add(z);
                     break;          
@@ -84,11 +86,13 @@ public class Environment {
     public void dayOfHumans()
     {   
         Random rand = new Random();
-        ArrayList<Character> copy = players;
+        ArrayList<Character> copy = new ArrayList<>(players);
         for (Character person: copy)
-        {
-            if (person.getType().equals("Human"))
+        {   //System.out.println("Day of Humans\n");
+            //instanceof does not work, because VampireHunter is also Human
+            if ((person.getType().equals("Human")) && !(person.isDying()))
             {   // Baby boom
+                
                 if (((Human)person).reproduction(temperature) == true)
                 {
                     for (int nr = 0; nr < (rand.nextInt(2)+1); nr++)            //every human can 1-3 a day
@@ -99,17 +103,17 @@ public class Environment {
                     }
                 }
             }
-            else if (person.getType().equals("VampireHunter"))
+            else if ((person.getType().equals("VampireHunter"))  && !(person.isDying()))
             {   // Hunting vampires
-                if (vampireHuntersLeft > 0 && (rand.nextDouble() < 1/3))
-                {
+                
+                if (vampiresLeft > 0 && (rand.nextDouble() < 0.33))
+                {   
                     ((VampireHunter)person).killVampire();
-                    die("Vampire");
+                    randomCharacterDies("Vampire");
                 }
-
                 // Baby boom after the hunting
                 if (((VampireHunter)person).reproduction(temperature) == true)
-                {
+                {   
                     for (int nr = 0; nr < (rand.nextInt(2)+1); nr++)            //every human can 1-3 a day
                     {   
                         VampireHunter child = new VampireHunter(day, ((VampireHunter)person).getVelocity());
@@ -127,60 +131,81 @@ public class Environment {
         for (Iterator<Character> person = players.iterator(); person.hasNext();) {
             
             Character p = person.next();
-            if (p.getType().equals("Human") || p.getType().equals("VampireHunter"))
+            if ((p.getType().equals("Human") || p.getType().equals("VampireHunter")) && p.isDying() == false)
             {
-                if (rand.nextDouble() < (1/500+1/300))   
-                {   
-                    if (p.getType().equals("Human"))    humansLeft--;
-                    else if (p.getType().equals("VampireHunter"))   vampireHuntersLeft--;
-                    person.remove();
-                }
-                  
+                if (rand.nextDouble() < (1/500+1/300))      p.willDie();
             }
-        }
-            
+        }            
     }
     public void dayOfVampires()
     {
+        int addVampires = 0;
         Random rand = new Random();
         for (Iterator<Character> person = players.iterator(); person.hasNext();) {
             
             Character p = person.next();
-            if (p.getType().equals("Vampire"))
+            if ((p instanceof Vampire) && p.isDying() == false)
             {   
                 if (getHumansLeft() == 0)   
-                {   person.remove();
-                    vampiresLeft--;     }
+                {   p.willDie();    }
                 else {
                 
                 double dub = rand.nextDouble();
-                if (dub < 0.5)     die("Human");
+                if (dub < 0.5)     randomCharacterDies("Human");
                 if (dub < 0.25) 
-                {   Vampire vp = new Vampire(getDay());
-                    players.add(vp);
-                    vampiresLeft++;
+                {   addVampires++;
                     ((Vampire)p).transformHuman();
                 }
                 }
             }           
         } 
+        for (int i = 0; i < addVampires; i++)
+        {
+            Vampire vp = new Vampire(getDay());
+            players.add(vp);
+            vampiresLeft++;
+        }
+    }
+    public void randomCharacterDies(String type)
+    {
+        Random rand = new Random();
+        int size = players.size();
+        boolean someoneDies = false;
+        for (int r = rand.nextInt(size); r < size; r++ )
+        {
+            Character p = players.get(r);
+            if (p.getType().equals(type))        //Niet met instance werken, want kan je niet meegeven in methode
+            {               
+                p.willDie();
+                someoneDies = true;
+                break;
+            }
+        }
+        if (!someoneDies)
+        {
+            for (Character c: players)
+            {
+                if (c.getType().equals(type))
+                {
+                    c.willDie();
+                    break;
+                }
+            }
+        }
     }
     public void dayOfZombie()
     {
         Random rand = new Random();
+        int addZombies = 0;
         for (Iterator<Character> person = players.iterator(); person.hasNext();) {
             
             Character p = person.next();
-            if (p.getType().equals("Zombie"))
+            if (p instanceof Zombie)
             {   // Zombie dies or not?
-                if ((getDay() - p.getBirthDate()) >= 8 )
-                {
-                    person.remove();
-                    zombiesLeft--;
-                }
-
+                if ((getDay() - p.getBirthDate()) >= 8)     p.willDie();
+               
                 // Convert human
-                else if (rand.nextDouble() < 0.1)
+                else if (rand.nextDouble() < zombieChanceToCatchHuman)
                 {   int speed = getSlowestVelocity();
                     boolean converted = false;
                     if (speed != 90000000)
@@ -188,38 +213,45 @@ public class Environment {
                         for (Iterator<Character> pp = players.iterator(); pp.hasNext();) {
             
                             Character convertingHuman = pp.next();
-                            if (convertingHuman.getType().equals("Human") && ((Human)convertingHuman).getVelocity() == speed)
-                            {
-                                humansLeft--;
-                                pp.remove();
+                            //instantof does not work, because it classifies human and vampirehunters as both humans
+                            if ((convertingHuman.getType().equals("Human")) && ((Human)convertingHuman).getVelocity() == speed 
+                                    && convertingHuman.isDying() == false)
+                            {   
+                                convertingHuman.willDie();
                                 converted = true;
                                 break;
                             }
-                            else if (convertingHuman.getType().equals("VampireHunter") && ((VampireHunter)convertingHuman).getVelocity() == speed)
+                            else if ((convertingHuman.getType().equals("VampireHunter")) && ((VampireHunter)convertingHuman).getVelocity() == speed
+                                    && convertingHuman.isDying() == false)
                             {
-                                vampireHuntersLeft--;
-                                pp.remove();
+                                convertingHuman.willDie();
                                 converted = true;
                                 break;
                             }
                         }
                     }
-                    if (converted){
-                        Zombie z = new Zombie(getDay());
-                        players.add(z);
-                        zombiesLeft++;
-                        ((Zombie)p).transformHuman();
-                    } 
+                    if (converted)
+                    {   
+                        addZombies++;
+                        ((Zombie)p).transformHuman();   
+                    }                    
                 }                
             }
-        }           
+        }    
+        System.out.println("New zombies = " + addZombies);
+        for (int i = 0; i < addZombies; i++)
+        {
+            Zombie z = new Zombie(getDay());
+            players.add(z);
+            zombiesLeft++;
+        }
     }
     public int getSlowestVelocity()
     {
         int slow = 90000000;
         for (Character ch: players)
         {
-            if (ch.getType().equals("Human") || ch.getType().equals("VampireHunter"))
+            if ((ch.getType().equals("Human") || ch.getType().equals("VampireHunter")) && ch.isDying() == false)
                 if (slow > ((Human)ch).getVelocity())
                     slow = ((Human)ch).getVelocity();
         }
@@ -246,23 +278,31 @@ public class Environment {
         }
     }
     
-    public void die(String type)
+    public void charactersDying()
     {
         for (Iterator<Character> person = players.iterator(); person.hasNext();) {
             
             Character p = person.next();
-            if (p.getType().equals(type))    person.remove();       
-        }
-        switch (type){
-            case "Humans":
-                humansLeft--;
-                break;
-            case "VampireHunters":
-                vampireHuntersLeft--;
-                break;
-            case "Vampire":
-                vampiresLeft--;
-                break;
+           
+            if (p.isDying())
+            {   
+                switch (p.getType()){
+                    case "Human":
+                        humansLeft--;
+                        break;
+                    case "VampireHunter":
+                        System.out.println("vamphunter--\n");
+                        vampireHuntersLeft--;
+                        break;
+                    case "Vampire":
+                        vampiresLeft--;
+                        break;
+                    case "Zombie":
+                        zombiesLeft--;
+                        break;
+                }       
+                person.remove();
+            }
         }
     }
     
@@ -274,9 +314,15 @@ public class Environment {
     public int getDay() {
         return day;
     }
-
+    public void setZombieChanceToCatchHuman(double zombieChanceToCatchHuman) {
+        this.zombieChanceToCatchHuman = zombieChanceToCatchHuman;
+    }
     public int getTemperature() {
         return temperature;
+    }
+    public void changeTemperature(int value)
+    {
+        temperature += value;
     }
 
     public int getHumansLeft() {

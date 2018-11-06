@@ -33,17 +33,17 @@ public class Human extends Character{
         double luckyNumber = rand.nextDouble();  //0.0-1.0
         if (temp >= 22)
         {
-            if (luckyNumber <= 1/15)    return true;
+            if (luckyNumber <= (0.0666667))    return true;
             return false;
         }
         else if (temp <= 18)
         {
-            if (luckyNumber <= 1/50)     return true;
+            if (luckyNumber <= (0.02))     return true;
             return false;
         }
         else
         {
-            if (luckyNumber <= 1/30)      return true;
+            if (luckyNumber <= (0.03333))      return true;
             return false;
         }
     }
