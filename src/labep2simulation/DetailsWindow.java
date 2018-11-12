@@ -56,21 +56,54 @@ public class DetailsWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        titleLbl.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+
+        titleLbl.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
+        titleLbl.setForeground(new java.awt.Color(255, 0, 0));
         titleLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLbl.setText("Detalles");
 
+        temperatureLbl.setBackground(new java.awt.Color(153, 153, 153));
+        temperatureLbl.setForeground(new java.awt.Color(153, 153, 153));
         temperatureLbl.setText("Temperatura:");
 
+        dayLbl.setBackground(new java.awt.Color(153, 153, 153));
+        dayLbl.setForeground(new java.awt.Color(153, 153, 153));
         dayLbl.setText("Día:");
 
+        humansLbl.setBackground(new java.awt.Color(153, 153, 153));
+        humansLbl.setForeground(new java.awt.Color(153, 153, 153));
         humansLbl.setText("Humanos:");
 
+        vampirehunterLbl.setBackground(new java.awt.Color(153, 153, 153));
+        vampirehunterLbl.setForeground(new java.awt.Color(153, 153, 153));
         vampirehunterLbl.setText("Caza Vampiros:");
 
+        vampiresLbl.setBackground(new java.awt.Color(153, 153, 153));
+        vampiresLbl.setForeground(new java.awt.Color(153, 153, 153));
         vampiresLbl.setText("Vampiros:");
 
+        zombiesLbl.setBackground(new java.awt.Color(153, 153, 153));
+        zombiesLbl.setForeground(new java.awt.Color(153, 153, 153));
         zombiesLbl.setText("Zombies:");
+
+        tmpinfoLbl.setForeground(new java.awt.Color(153, 153, 153));
+
+        dayinfoLbl.setBackground(new java.awt.Color(153, 153, 153));
+        dayinfoLbl.setForeground(new java.awt.Color(153, 153, 153));
+
+        humansinfoLbl.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        humansinfoLbl.setForeground(new java.awt.Color(0, 102, 255));
+
+        vhinfoLbl.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        vhinfoLbl.setForeground(new java.awt.Color(153, 51, 255));
+
+        vampireinfoLbl.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        vampireinfoLbl.setForeground(new java.awt.Color(204, 0, 51));
+
+        zombieinfoLbl.setBackground(new java.awt.Color(0, 204, 0));
+        zombieinfoLbl.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        zombieinfoLbl.setForeground(new java.awt.Color(0, 153, 51));
 
         backBtn.setText("Volver");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +180,7 @@ public class DetailsWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 422, Short.MAX_VALUE)
+            .addGap(0, 436, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -156,7 +189,7 @@ public class DetailsWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 322, Short.MAX_VALUE)
+            .addGap(0, 328, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

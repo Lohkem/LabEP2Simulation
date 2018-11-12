@@ -16,7 +16,12 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
      */
     public InterfaceEnvironment() {
         initComponents();
-                        
+        btnSkipDay.setEnabled(false);
+        btnSkip10Days.setEnabled(false);
+        btnShowDetails.setEnabled(false);
+        btnInvasionZombie.setEnabled(false);
+        btnGlobalCooling.setEnabled(false);
+        btnGlobalWarming.setEnabled(false);
     }
 
     /**
@@ -42,7 +47,11 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblGame.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+
+        lblGame.setFont(new java.awt.Font("Viner Hand ITC", 1, 24)); // NOI18N
+        lblGame.setForeground(new java.awt.Color(255, 0, 0));
+        lblGame.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGame.setText("INVASIÓN");
 
         btnStart.setText("Creación");
@@ -101,6 +110,9 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
             }
         });
 
+        lblDay.setBackground(new java.awt.Color(153, 153, 153));
+        lblDay.setForeground(new java.awt.Color(153, 153, 153));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -109,13 +121,15 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnStart)
-                        .addGap(43, 43, 43)
-                        .addComponent(btnSkipDay, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnGlobalWarming)
                         .addGap(18, 18, 18)
-                        .addComponent(btnGlobalCooling)))
+                        .addComponent(btnGlobalCooling))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnStart)
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSkipDay, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInvasionZombie)
@@ -131,10 +145,6 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSkip10Days)
                 .addGap(103, 103, 103))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(lblGame)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,6 +200,12 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
         world = new Environment();
         world.resetGame();
         updateDateTxtField();
+        btnSkipDay.setEnabled(true);
+        btnSkip10Days.setEnabled(true);
+        btnShowDetails.setEnabled(true);
+        btnInvasionZombie.setEnabled(true);
+        btnGlobalCooling.setEnabled(true);
+        btnGlobalWarming.setEnabled(true);
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnShowDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowDetailsActionPerformed
@@ -206,7 +222,7 @@ public class InterfaceEnvironment extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        System.exit(1);
+        System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void btnGlobalWarmingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGlobalWarmingActionPerformed
